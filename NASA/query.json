@@ -1,0 +1,10 @@
+{
+  "type": "aggregate",
+  "table": "access_log",
+  "dimensions": ["path", "status"],
+  "metrics": ["count"],
+  "filter": {"op": "and", "filters": [
+    {"op": "gt", "column": "time", "value": "19950701000000"},
+    {"op": "lt", "column": "time", "value": "19950711000000"}
+  ]}
+}

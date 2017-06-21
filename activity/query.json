@@ -1,0 +1,18 @@
+{
+  "type": "aggregate",
+  "table": "activity",
+  "select": [
+    {"column": "install_date"},
+    {"column": "ad_network"},
+    {"column": "install_country"},
+    {"column": "installs_count"},
+    {"column": "launches_count"},
+    {"column": "inapps_count"}
+  ],
+  "filter": {"op": "and", "filters": [
+    {"op": "eq", "column": "app_id", "value": "com.teslacoilsw.notifier"},
+    {"op": "ge", "column": "install_date", "value": "2015-03-01"},
+    {"op": "lt", "column": "install_date", "value": "2015-03-30"},
+    {"op": "in", "column": "install_country", "values": ["US", "IL", "RU"]}
+  ]}
+}

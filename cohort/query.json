@@ -1,0 +1,16 @@
+{
+  "type": "aggregate",
+  "table": "activity",
+  "select": [
+    {"column": "days_from_install"},
+    {"column": "ad_network"},
+    {"column": "users"},
+    {"column": "revenue"}
+  ],
+  "filter": {"op": "and", "filters": [
+    {"op": "eq", "column": "app_id", "value": "com.teslacoilsw.notifier"},
+    {"op": "ge", "column": "install_date", "value": "2015-01-01"},
+    {"op": "le", "column": "install_date", "value": "2015-01-31"},
+    {"op": "gt", "column": "days_from_install", "value": "0"}
+  ]}
+}

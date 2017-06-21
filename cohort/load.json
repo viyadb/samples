@@ -1,0 +1,6 @@
+{
+  "table": "activity",
+  "format": "tsv",
+  "type": "file",
+  "file": "../samples/cohort/data.tsv"
+}

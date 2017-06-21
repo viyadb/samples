@@ -1,0 +1,16 @@
+{
+  "tables": [{
+    "name": "access_log",
+    "dimensions": [
+      {"name": "ip"},
+      {"name": "time", "type": "numeric", "max": 20300000000000},
+      {"name": "method", "cardinality": 5},
+      {"name": "path"},
+      {"name": "proto"},
+      {"name": "status"}
+    ],
+    "metrics": [
+      {"name": "count", "type": "count"}
+    ]
+  }]
+}
