@@ -5,6 +5,7 @@ import os
 from faker import Faker
 from faker.providers import BaseProvider, address, internet, currency
 from datetime import datetime, timedelta
+import pytz
 from optparse import OptionParser
 from time import mktime, time
 from hashlib import md5
@@ -30,8 +31,8 @@ class AppIdProvider(BaseProvider):
 class InstallDateProvider(BaseProvider):
   def __init__(self, generator):
     super(InstallDateProvider, self).__init__(generator)
-    self.current_date = datetime(2015, 01, 01)
-    self.events_per_day = 100000
+    self.current_date = datetime(2015, 01, 01, 0, 0, 0, 0, pytz.UTC)
+    self.events_per_day = 10000000
     self.event_counter = 0
 
   def event_date(self):
@@ -86,17 +87,24 @@ def hash_vals(*args):
   key.update("".join(list(args)).encode("utf-8"))
   return key.hexdigest()[0:16]
 
+def hash32_vals(*args):
+  return hash("".join(list(args)).encode("utf-8")) & 0xffffffff
+
 def generate_events(num_events, cohort, day_granularity):
+  epoch_date = datetime(1970, 1, 1)
+  if day_granularity:
+    epoch_date = epoch_date.date()
+
   for i in range(num_events):
     app_id = fake.app_id()
 
-    install_date = fake.install_date()
+    install_date = fake.install_date().replace(tzinfo=pytz.UTC)
     if cohort:
       event_date = fake.event_date()
       days_from_install = str((event_date - install_date).days)
     if day_granularity:
       install_date = install_date.date()
-    install_date = install_date.strftime("%s")
+    install_date = str(int((install_date - epoch_date).total_seconds()))
 
     ad_network = fake.ad_network()
     install_country = fake.country_code()
@@ -117,9 +125,8 @@ def generate_events(num_events, cohort, day_granularity):
     adgroup_id = adgroup.split("_")[-1]
     event_name = random_value(app_key, "event_", [[0.05, 1000], [0.1, 500], [0.5, 100], [1, 5]])
     if cohort:
-      user_id = str(int(
-          hash_vals(random_value(app_key, "", [[0.05, 10000000], [0.2, 1000000], [0.4, 10000], [0.7, 1000], [1, 200]])),
-          16))
+      user_id = str(hash32_vals(
+        random_value(app_key, "", [[0.05, 10000000], [0.2, 1000000], [0.4, 10000], [0.7, 1000], [1, 200]])))
     
     r = fake.random.random()
     if r < 0.05: # install

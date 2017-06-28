@@ -3,7 +3,7 @@
     "name": "activity",
     "dimensions": [
       {"name": "app_id", "cardinality": 20000},
-      {"name": "install_date", "type": "time"},
+      {"name": "install_date", "type": "time", "granularity": "day"},
       {"name": "install_country", "cardinality": 200},
       {"name": "install_currency", "cardinality": 200},
       {"name": "ad_network"},
@@ -44,7 +44,7 @@
       {"name": "days_from_install", "type": "numeric", "max": 3650}
     ],
     "metrics": [
-      {"name": "users", "type": "bitset", "max": 18446744073709551615},
+      {"name": "users", "type": "bitset"},
       {"name": "install_cost", "type": "double_sum"},
       {"name": "install_cost_alt", "type": "double_sum"},
       {"name": "revenue", "type": "double_sum"},

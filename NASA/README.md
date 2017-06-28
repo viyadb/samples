@@ -13,7 +13,11 @@ To run the database instance on this dataset, issue the following command when s
 
 ## Loading the data
 
-    curl -sS --data-binary @data.tsv http://localhost:52341/tables/access_log/data
+First, update full path to the .tsv file in `load.json` file.
+
+Then, run:
+
+    curl -sS --data-binary @load.json http://localhost:52341/load
 
 ## Sending a query
 

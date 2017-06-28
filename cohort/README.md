@@ -10,9 +10,13 @@ suitable for cohort analysis.
 
 To run the database instance on this dataset, issue the following command when standing in the build/ directory:
 
-    ./src/server/viyad ../samples/cohort/store.json
+    ./src/server/viyad store.json
 
 ## Loading the data
+
+First, correct full path to .tsv file in `load.json`.
+
+Then, run:
 
     curl -sS --data-binary @load.json http://localhost:52341/load
 
