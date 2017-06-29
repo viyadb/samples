@@ -2,5 +2,5 @@
   "table": "activity",
   "format": "tsv",
   "type": "file",
-  "file": "/Users/michael/Dev/projects/playground/samples/activity/data.tsv"
+  "file": "/home/michael/Dev/projects/samples/activity/data.tsv"
 }
