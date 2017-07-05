@@ -34,3 +34,19 @@ Then, run:
 
     curl -sS --data-binary @query.json http://localhost:52341/query
 
+## Stress Testing
+
+Install `siege` if it's not installed yet (shame on you).
+
+Generate sample queries:
+
+    ./queries.py > urls.txt
+
+Run for the first time just to make sure all queries are compiled:
+
+    siege -c 10 -t 3M -f urls.txt -H 'Content-Type: application/json'
+
+Perform the testing by running the same command again:
+
+    siege -c 10 -t 3M -f urls.txt -H 'Content-Type: application/json'
+

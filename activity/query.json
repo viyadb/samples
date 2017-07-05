@@ -5,6 +5,7 @@
     {"column": "install_date"},
     {"column": "ad_network"},
     {"column": "install_country"},
+    {"column": "campaign"},
     {"column": "installs_count"},
     {"column": "launches_count"},
     {"column": "inapps_count"}

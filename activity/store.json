@@ -8,40 +8,16 @@
       {"name": "install_country", "cardinality": 200},
       {"name": "install_currency", "cardinality": 200},
       {"name": "ad_network"},
-      {
-        "name": "campaign",
-        "cardinality_guard": {
-          "dimensions": ["app_id", "install_date", "ad_network"],
-          "limit": 300
-        }
-      },
-      {
-        "name": "campaign_id",
-        "cardinality_guard": {
-          "dimensions": ["app_id", "install_date", "ad_network"],
-          "limit": 300
-        }
-      },
-      {
-        "name": "site_id",
-        "cardinality_guard": {
-          "dimensions": ["app_id", "install_date", "ad_network"],
-          "limit": 3000
-        }
-      },
+      {"name": "campaign"},
+      {"name": "campaign_id"},
+      {"name": "site_id"},
       {"name": "adset"},
       {"name": "adset_id"},
       {"name": "adgroup"},
       {"name": "adgroup_id"},
       {"name": "event_country", "cardinality": 200},
       {"name": "event_currency", "cardinality": 200},
-      {
-        "name": "event_name",
-        "cardinality_guard": {
-          "dimensions": ["app_id", "install_date"],
-          "limit": 300
-        }
-      }
+      {"name": "event_name"}
     ],
     "metrics": [
       {"name": "install_cost", "type": "double_sum"},

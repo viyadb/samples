@@ -9,8 +9,8 @@
   ],
   "filter": {"op": "and", "filters": [
     {"op": "eq", "column": "app_id", "value": "com.teslacoilsw.notifier"},
-    {"op": "ge", "column": "install_date", "value": "2015-01-01"},
-    {"op": "le", "column": "install_date", "value": "2015-01-31"},
+    {"op": "ge", "column": "install_date", "value": "2013-01-01"},
+    {"op": "le", "column": "install_date", "value": "2013-01-31"},
     {"op": "gt", "column": "days_from_install", "value": "0"}
   ]}
 }
