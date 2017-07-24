@@ -90,10 +90,23 @@ def hash_vals(*args):
 def hash32_vals(*args):
   return hash("".join(list(args)).encode("utf-8")) & 0xffffffff
 
-def generate_events(num_events, cohort, day_granularity):
+def generate_events(num_events, cohort, day_granularity, add_header):
   epoch_date = datetime(1970, 1, 1)
   if day_granularity:
     epoch_date = epoch_date.date()
+
+  if add_header:
+    headers = ["app_id", "install_date", "install_country", "install_currency", "ad_network",
+        "campaign", "campaign_id", "siteid", "adset", "adset_id", "adgroup", "adgroup_id",
+        "event_country", "event_currency", "event_name"]
+    if cohort:
+      headers.append("days_from_install")
+    if cohort:
+      headers.append("user_id")
+    headers = headers + ["install_cost", "install_cost_alt", "revenue", "revenue_alt",
+        "clicks_count", "impressions_count", "installs_count", "launches_count",
+        "inapps_count", "uninstalls_count"]
+    print("\t".join([s.encode("utf-8") for s in headers]))
 
   for i in range(num_events):
     app_id = fake.app_id()
@@ -240,6 +253,11 @@ if __name__ == '__main__':
       dest="cohort",
       default=False,
       help="Generate columns needed for calculating cohort")
+  parser.add_option("-H", "--header",
+      action="store_true",
+      dest="add_header",
+      default=False,
+      help="Whether to output header containing column names")
   parser.add_option("-n", "--number",
       dest="num_events",
       type="int",
@@ -255,5 +273,5 @@ if __name__ == '__main__':
   if len(args) != 0:
     parser.error("wrong number of arguments")
 
-  generate_events(options.num_events, options.cohort, options.day_granularity)
+  generate_events(options.num_events, options.cohort, options.day_granularity, options.add_header)
 
