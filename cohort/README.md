@@ -18,9 +18,9 @@ First, correct full path to .tsv file in `load.json`.
 
 Then, run:
 
-    curl -sS --data-binary @load.json http://localhost:52341/load
+    curl -sS --data-binary @load.json http://localhost:5000/load
 
 ## Sending a query
 
-    curl -sS --data-binary @query.json http://localhost:52341/query
+    curl -sS --data-binary @query.json http://localhost:5000/query
 

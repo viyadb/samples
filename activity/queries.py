@@ -67,5 +67,5 @@ for i in range(1000):
   if random.random() < 0.5:
     query["filter"]["filters"].append({"op": "eq", "column": "ad_network", "value": random.choice(networks)})
     
-  print "http://localhost:52341/query POST %s" % json.dumps(query)
+  print "http://localhost:5000/query POST %s" % json.dumps(query)
 
